@@ -1,9 +1,4 @@
-exec --no-startup-id dbus-update-activation-environment --all
-exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
+# loicdm's sway config
 # Read `man 5 sway` for a complete reference.
 
 ### Variables
@@ -40,6 +35,10 @@ output * bg /home/loicdm/Images/IMG_20230723_1508433.jpg fill
 #
 # Example configuration:
 #
+exec --no-startup-id dbus-update-activation-environment --all
+exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
+exec --no-startup-id /lib64/libexec/pam_kwallet_init
+
 exec swayidle -w \
           timeout 30 'swaylock -f -c 282a36' \
           timeout 45 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
@@ -136,9 +135,9 @@ input * {
 	bindsym $mod+quotedbl workspace number 3
 	bindsym $mod+apostrophe workspace number 4
 	bindsym $mod+parenleft workspace number 5
-	bindsym $mod+minus workspace number 6	# +section on Apple keyboards
+	bindsym $mod+minus workspace number 6
 	bindsym $mod+egrave workspace number 7
-	bindsym $mod+underscore workspace number 8	# +exclam on Apple keyboards
+	bindsym $mod+underscore workspace number 8
 	bindsym $mod+ccedilla workspace number 9
 	bindsym $mod+agrave workspace number 10
     # Move focused container to workspace
