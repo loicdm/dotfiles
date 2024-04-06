@@ -88,3 +88,6 @@ window#waybar:first-child > box {
 #tray {
         padding: 0px 8px 0px 8px;
 }
+#power-profiles-daemon {
+        padding: 0px 8px 0px 8px;
+}

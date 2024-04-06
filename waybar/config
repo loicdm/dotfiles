@@ -7,7 +7,7 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": [ "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray"],
+    "modules-right": [ "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature","power-profiles-daemon", "backlight", "battery", "clock", "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -25,6 +25,20 @@
     //         "default": ""
     //     }
     // },
+
+
+"power-profiles-daemon": {
+  "format": "{profile} {icon}",
+  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+  "tooltip": true,
+  "format-icons": {
+    "default": "",
+    "performance": "",
+    "balanced": "",
+    "power-saver": ""
+  }
+},
+
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -82,11 +96,13 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{:%H:%M:%S}  ",
+    "format": "{:%H:%M:%S} ",
+    "locale":"fr_FR.UTF-8",
 	"interval": 1,
-        "format-alt": "{:%A %d %B %Y (%H:%M:%S)}  ",
+        "format-alt": "{:L%A %d %B %Y (%H:%M:%S)} ",
         "tooltip-format": "<small>{calendar}</small>",
         "calendar": {
+                    "locale":"fr_FR.UTF-8",
                     "mode"          : "year",
                     "mode-mon-col"  : 3,
                     "weeks-pos"     : "right",
