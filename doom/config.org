@@ -8,8 +8,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
-(setq user-full-name "Loïc Daudé Mondet"
-      user-mail-address "loic.daude@mondet.fr")
+;; (setq user-full-name "John Doe"
+;;       user-mail-address "john@doe.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -76,73 +76,6 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(map! :map dap-mode-map
-      :leader
-      :prefix ("d" . "dap")
-      ;; basics
-      :desc "dap next"          "n" #'dap-next
-      :desc "dap step in"       "i" #'dap-step-in
-      :desc "dap step out"      "o" #'dap-step-out
-      :desc "dap continue"      "c" #'dap-continue
-      :desc "dap hydra"         "h" #'dap-hydra
-      :desc "dap debug restart" "r" #'dap-debug-restart
-      :desc "dap debug"         "s" #'dap-debug
-
-      ;; debug
-      :prefix ("dd" . "Debug")
-      :desc "dap debug recent"  "r" #'dap-debug-recent
-      :desc "dap debug last"    "l" #'dap-debug-last
-
-      ;; eval
-      :prefix ("de" . "Eval")
-      :desc "eval"                "e" #'dap-eval
-      :desc "eval region"         "r" #'dap-eval-region
-      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
-      :desc "add expression"      "a" #'dap-ui-expressions-add
-      :desc "remove expression"   "d" #'dap-ui-expressions-remove
-
-      :prefix ("db" . "Breakpoint")
-      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
-      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
-      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
-      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
-
-(setq lsp-clients-clangd-args '("-j=3"
-				"--background-index"
-				"--clang-tidy"
-				"--completion-style=detailed"
-				"--header-insertion=never"
-				"--header-insertion-decorators=0"))
-(after! lsp-clangd (set-lsp-priority! 'clangd 2))
-
-;; Each path is relative to the path of the maildir you passed to mu
-(set-email-account! "mondet.fr"
-  '((mu4e-sent-folder       . "/ovh/&AMk-l&AOk-ments envoy&AOk-s")
-    (mu4e-drafts-folder     . "/ovh/Brouillons")
-    (mu4e-trash-folder      . "/ovh/&AMk-l&AOk-ments supprim&AOk-s")
-    (mu4e-refile-folder     . "/ovh/Archive")
-    (smtpmail-smtp-user     . "loic.daude@mondet.fr")
-    (user-mail-address      . "loic.daude@mondet.fr")    ;; only needed for mu < 1.4
-    (mu4e-compose-signature . "---\nLoïc Daudé Mondet"))
-  t)
-(set-email-account! "etu.sorbonne"
-  '((mu4e-sent-folder       . "/su-etu/Sent")
-    (mu4e-drafts-folder     . "/su-etu/Drafts")
-    (mu4e-trash-folder      . "/su-etu/Trash")
-    ;;(mu4e-refile-folder     . "/su-etu/All Mail")
-    (smtpmail-smtp-user     . "loic.daude_mondet@etu.sorbonne-universite.fr")
-    (user-mail-address      . "loic.daude_mondet@etu.sorbonne-universite.fr")    ;; only needed for mu < 1.4
-    (mu4e-compose-signature . "---\nLoïc Daudé Mondet"))
-  t)
-
-(setq mu4e-context-policy 'ask-if-none
-      mu4e-compose-context-policy 'always-ask)
-
- (after! mu4e
-   (setq sendmail-program (executable-find "msmtp")
- 	send-mail-function #'smtpmail-send-it
- 	message-sendmail-f-is-evil t
- 	message-sendmail-extra-arguments '("--read-envelope-from")
- 	message-send-mail-function #'message-send-mail-with-sendmail))
+(setq vterm-shell "/usr/bin/fish")
 
   #+END_SRC
