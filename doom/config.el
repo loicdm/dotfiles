@@ -75,3 +75,6 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 (setq vterm-shell "/usr/bin/fish")
+(set-frame-parameter nil 'alpha-background 85)
+
+(add-to-list 'default-frame-alist '(alpha-background . 85))

@@ -2,33 +2,90 @@
 	font-size:14px;
 	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
 	border-color:transparent;
+	/* padding: 0px 8px 0px 8px; */
+	/* border: 1px solid #50fa7b; */
+
 }
+.modules-left {
+	padding-top: 2px;
+	padding-bottom: 0px;
+	padding-right: 4px;
+	padding-left: 4px;
+    margin-left : 0px;
+
+}
+.modules-center {
+	padding-top: 2px;
+	padding-bottom: 0px;
+	padding-right: 4px;
+	padding-left: 4px;
+    margin-left : 8px;
+    margin-right : 8px;
+
+
+}
+.modules-right {
+	padding-top: 2px;
+	padding-bottom: 0px;
+	padding-right: 4px;
+	padding-left: 4px;
+    margin-right : 8px;
+}
+
+.modules-right :hover {
+    color: #50fa7b;
+}
+
 
 window#waybar {
 	background-color: transparent;
 }
-window#waybar:first-child > box {
-    /*margin: 4px;
-    padding: 0px 4px 0px 4px;
-    border-radius: 10px 10px ;*/
-    background-color: #282a36 ;
-    color: #f8f8f2;
-    /*border-bottom: 1px solid #bd93f9;
-    border-top: 1px solid #50fa7b;*/
+window#waybar.empty #window {
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+		background-color: transparent;
+}
 
+window#waybar> box {
+    /*margin: 4px;
+    padding: 0px 4px 0px 4px; */
+    border-radius: 5px 5px;
+    background-color: rgba(40, 42, 54, 0.85);
+    /* background: rgba(0, 0, 0, 0); */
+    color: #f8f8f2;
+
+    border: 1px solid #bd93f9;
+    /* border-top: 2px solid #bd93f9; */
+
+    /* border-left: 2px solid #bd93f9; */
+    /* border-right: 2px solid #bd93f9; */
+    /* border-bottom: 2px solid #bd93f9; */
 }
 
 #workspaces {
-	padding: 0 4px 0 4px;
- 	font-size: 17px;
+	/* padding: 0 4px 0 4px ; */
+ 	font-size: 14px;
+    padding-left: 4px;
+    padding-right: 4px;
+    /* margin-left : 4px; */
+    /* margin-right : 4px; */
+
 }
 
 #workspaces button {
-	padding: 0 4px 0 4px;
+	/* padding: 0 4px 0 4px ; */
 	background-color: transparent ;
 	color: #f8f8f2;
-	margin-bottom:2px;
-	margin-top:2px;
+	/* margin-bottom:2px; */
+	/* margin-top:2px; */
+   padding-left: 4px;
+    padding-right: 4px;
+    /* margin-left : 4px; */
+    /* margin-right : 4px; */
+
+
+
 }
 
 #workspaces button:hover {
@@ -40,8 +97,9 @@ window#waybar:first-child > box {
 	color: #50fa7b;
 }
 
-#workspaces button:active {
-	color: #bd93f9;
+#workspaces button.active {
+	/* color: #bd93f9; */
+	color: #50fa7b;
 	background: transparent;
 }
 
@@ -50,47 +108,111 @@ window#waybar:first-child > box {
 }
 #window {
 	background-color: transparent;
-	padding: 0px 0px 0px 8px;
-/*	border-left: 1px solid #50fa7b;*/
+       padding-left: 10px;
+    padding-right: 10px;
+
 }
 #battery {
 	background-color: transparent;
-	padding: 0px 8px 0px 8px;
+       padding-left: 10px;
+    padding-right: 10px;
+
 }
 #network {
-	padding: 0px 8px 0px 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+
 }
+#bluetooth {
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
 #clock {
-	padding: 0px 8px 0px 8px;
-	color: #50fa7b;
+	   padding-left: 10px;
+    padding-right: 10px;
+/* color: #50fa7b; */
 	}
-#pulseaudio {
-        padding: 0px 8px 0px 8px;
+
+#clock calendar{
+	   /* color: #50fa7b; */
+
+	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+	}
+
+#pulseaudio {   padding-left: 10px;
+    padding-right: 10px;
+
 }
-#pulseaudio.muted {
-	padding: 0px 8px 0px 8px;
-}
-#backlight {
-	padding: 0px 8px 0px 8px;
+
+#backlight {   padding-left: 10px;
+    padding-right: 10px;
+
 }
 #memory{
-	padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
 }
 #cpu{
-	padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
 }
 #custom-ddcutil {
-	padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
 }
 #idle_inhibitor {
-        padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
 }
 #tray {
-        padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
 }
 #power-profiles-daemon {
-        padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
 }
 #privacy {
-	padding: 0px 8px 0px 8px;
+   padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-quit {
+   padding-left: 10px;
+    padding-right: 10px;
+}
+#custom-lock {
+   padding-left: 10px;
+    padding-right: 10px;
+}
+#custom-reboot {
+   padding-left: 10px;
+    padding-right: 10px;
+}
+#custom-power {
+   padding-left: 10px;
+    padding-right: 10px;
+}
+
+#custom-quit:hover  {
+
+	color: #ff8080;
+}
+#custom-lock:hover  {
+
+	color: #ff8080;
+}
+#custom-reboot:hover  {
+
+	color: #ff8080;
+}
+#custom-power:hover {
+
+	color: #ff8080;
+}
+#custom-wlogout {
+   padding-left: 10px;
+    padding-right: 10px;
 }

@@ -18,6 +18,11 @@ set $term kitty
 #set $menu dmenu_path | wmenu | xargs swaymsg exec --
 set $menu fuzzel -T "kitty"
 
+
+set $fileManager dolphin
+set $menulogout wlogout -p layer-shell -b 3 -s -n -c 10 -r 10
+
+
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/local/share/backgrounds/sway/)
@@ -37,19 +42,23 @@ output * bg /home/loicdm/Images/IMG_20230723_1508433.jpg fill
 #
 exec --no-startup-id dbus-update-activation-environment --all
 exec --no-startup-id /usr/libexec/polkit-gnome-authentication-agent-1
-exec --no-startup-id /lib64/libexec/pam_kwallet_init
+exec --no-startup-id /usr/lib/pam_kwallet_init
 
 exec swayidle -w \
           timeout 30 'swaylock -f -c 282a36' \
           timeout 45 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
 	  before-sleep 'swaylock -f -c 282a36'
 
-exec gentoo-pipewire-launcher restart &
+#exec gentoo-pipewire-launcher restart &
 
-exec "brightnessctl -d intel_backlight set 50%"
+exec "brightnessctl -d intel_backlight set 100%"
 
 exec sworkstyle &> /tmp/sworkstyle.log
 exec mako
+exec wl-paste --type text --watch cliphist store
+exec wl-paste --type image --watch cliphist store
+exec ~/.ssh/ssh-agent.sh
+
 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -102,6 +111,10 @@ input * {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Vous avez appuyé sur le raccourci de sortie. Voulez-vous vraiment quitter sway ?' -B 'Oui, quitter sway' 'swaymsg exit'
+
+    bindsym $mod+Shift+q exec $menulogout
+
+    bindsym $mod+e exec $fileManager
 #
 # Moving around:
 #
@@ -163,15 +176,15 @@ input * {
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym $mod+w layout stacking
+    bindsym $mod+x layout tabbed
+    bindsym $mod+c layout toggle split
 
     # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+    bindsym $mod+m fullscreen
 
     # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+f floating toggle
 
     # Swap focus between the tiling area and the floating area
     bindsym $mod+space focus mode_toggle
@@ -218,7 +231,11 @@ bindsym $mod+r mode "resize"
 #
 # Screen capture
 #
-bindsym Print exec slurpshot
+bindsym Print exec  grimblast copysave area
+
+# clipboard manager
+
+bindsym alt+c exec nwg-clipman
 
 # locksreen
 bindsym $mod+l exec 'swaylock -c 282a36'
@@ -271,8 +288,9 @@ bar swaybar_command waybar
 client.focused		#282a36 #50fa7b #000000 #50fa7b #bd93f9
 client.unfocused	#282a36 #50fa7b #000000 #50fa7b #44475a
 
-gaps inner 2
-default_border pixel 2
+gaps inner 4
+gaps outer 4
+default_border pixel 1
 font JetBrainsMono Nerd Font 14px
 
 include /usr/local/etc/sway/config.d/*
