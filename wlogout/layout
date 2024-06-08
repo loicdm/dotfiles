@@ -1,0 +1,38 @@
+{
+    "label" : "lock",
+    "action" : "hyprlock",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+
+{
+    "label" : "disconnect",
+    "action" : "hyprctl dispatch exit",
+    "text" : "Disconnect",
+    "keybind" : "d"
+}
+{
+    "label" : "poweroff",
+    "action" : "loginctl poweroff",
+    "text" : "Poweroff",
+    "keybind" : "p"
+}
+{
+    "label" : "reboot",
+    "action" : "loginctl reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}
+{
+    "label" : "firmware",
+    "action" : "loginctl reboot --firmware-setup",
+    "text" : "firmware",
+    "keybind" : "f"
+
+}
+{
+    "label" : "suspend",
+    "action" : "loginctl suspend",
+    "text" : "Suspend",
+    "keybind" : "s"
+}

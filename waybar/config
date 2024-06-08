@@ -1,5 +1,5 @@
 {
-  "layer": "top", // Waybar at top layer
+  "layer": "top", //Waybar at top layer
   "position": "top", // Waybar position (top|bottom|left|right)
   //"height": 32, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
@@ -26,6 +26,7 @@
     "backlight",
     "battery",
     "clock",
+    "custom/notification",
     "tray",
     "custom/wlogout",
   ],
@@ -206,10 +207,12 @@
   },
   "cpu": {
     "format": "{usage}% ",
-    "tooltip": false
+    "tooltip": true,
+    "on-click": "kitty btop -p 1"
   },
   "memory": {
-    "format": "{}% "
+    "format": "{}% ",
+    "on-click": "kitty btop -p 2"
   },
   "temperature": {
     "thermal-zone": 11,
@@ -217,7 +220,8 @@
     "critical-threshold": 90,
     //"format-critical": "{temperatureC}°C {icon}",
     "format": "{temperatureC}°C {icon}",
-    "format-icons": ["", "", ""]
+    "format-icons": ["", "", ""],
+    "on-click": "kitty btop -p 0"
   },
   "backlight": {
     // "device": "acpi_video1",
@@ -251,7 +255,8 @@
     "tooltip-format": "{ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click-right" : "iwgtk"
   },
   "pulseaudio": {
     // "scroll-step": 1, // %, can be a float
@@ -268,7 +273,8 @@
       "car": "",
       "default": ["", "", ""]
     },
-    "on-click": "pavucontrol-qt"
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol-qt"
   },
   "custom/media": {
     "format": "{icon} {}",
@@ -281,5 +287,25 @@
     "escape": true,
     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
-  }
+  },
+    "custom/notification": {
+    "tooltip": false,
+      "format": "{} {icon}",
+    "format-icons": {
+      "notification": "<span foreground='red'><sup></sup></span>",
+      "none": "",
+      "dnd-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-none": "",
+      "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "inhibited-none": "",
+      "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+      "dnd-inhibited-none": ""
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
 }

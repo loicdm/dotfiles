@@ -1,0 +1,56 @@
+* {
+	background-image: none;
+	box-shadow: none;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
+    font-size:20px;
+}
+
+window {
+	background-color: rgba(40, 42, 54, 0.6);
+}
+
+button {
+    border-radius: 5px 5px;
+    border-color: RGB(189, 147, 249);
+	text-decoration-color: RGB(248, 248, 242);
+    color: RGB(248, 248, 242);
+	background-color: rgba(40, 42, 54, 0.85);
+	border-style: solid;
+	border-width: 1px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 25%;
+}
+
+button:focus, button:active, button:hover {
+	background-color: RGB(255, 85, 85);
+	outline-style: none;
+}
+
+#lock {
+    background-image: url("/home/loicdm/.config/wlogout/icons/lock.svg");
+}
+
+
+#disconnect {
+    background-image: url("/home/loicdm/.config/wlogout/icons/disconnect.svg");
+}
+
+#suspend {
+    background-image: url("/home/loicdm/.config/wlogout/icons/suspend.svg");
+}
+
+#hibernate {
+    background-image: url("/home/loicdm/.config/wlogout/icons/hibernate.svg");
+}
+
+#poweroff {
+    background-image: url("/home/loicdm/.config/wlogout/icons/poweroff.svg");
+}
+#firmware {
+    background-image: url("/home/loicdm/.config/wlogout/icons/firmware.svg");
+}
+
+#reboot {
+    background-image: url("/home/loicdm/.config/wlogout/icons/reboot.svg");
+}
