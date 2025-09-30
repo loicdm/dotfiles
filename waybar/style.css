@@ -17,7 +17,7 @@
     border: none;
     border-radius: 0;
     font-family: "Iosevka Nerd Font Propo", "Font Awesome 6 Free", sans-serif;
-    font-size: 14px;
+    font-size: 18px;
     min-height: 32px;
 }
 
@@ -39,7 +39,7 @@ window#waybar {
 }
 
 #workspaces button.focused {
-    background: @blue;
+    background: @purple;
     color: @bg;
     border-radius: 6px;
 }

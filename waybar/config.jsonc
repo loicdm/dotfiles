@@ -133,13 +133,30 @@
       "weeks-pos": "right",
       "on-scroll": 1,
       "on-click-right": "mode",
-      "format": {
-        "months": "<span font='JetBrainsMono Nerd Font' color='#ffead3'><b>{}</b></span>",
-        "days": "<span font='JetBrainsMono Nerd Font' color='#ecc6d9'><b>{}</b></span>",
-        "weeks": "<span font='JetBrainsMono Nerd Font' color='#99ffdd'><b>S{}</b></span>",
-        "weekdays": "<span font='JetBrainsMono Nerd Font' color='#ffcc66'><b>{}</b></span>",
-        "today": "<span font='JetBrainsMono Nerd Font' color='#ff6699'><b><u>{}</u></b></span>"
-      }
+     // "format": {
+     //   "months": "<span font='Iosevka Nerd Font' color='#ffead3'><b>{}</b></span>",
+     //   "days": "<span font='Iosevka Nerd Font' color='#ecc6d9'><b>{}</b></span>",
+     //   "weeks": "<span font='Iosevka Nerd Font' color='#99ffdd'><b>S{}</b></span>",
+     //   "weekdays": "<span font='Iosevka Nerd Font' color='#ffcc66'><b>{}</b></span>",
+     //   "today": "<span font='Iosevka Nerd Font' color='#ff6699'><b><u>{}</u></b></span>"
+     // }
+//        "format": {
+//  "months": "<span font='Iosevka Nerd Font' color='#fabd2f'><b>{}</b></span>",       // yellow
+//  "days": "<span font='Iosevka Nerd Font' color='#d3869b'><b>{}</b></span>",         // purple
+//  "weeks": "<span font='Iosevka Nerd Font' color='#8ec07c'><b>S{}</b></span>",       // aqua
+//  "weekdays": "<span font='Iosevka Nerd Font' color='#fe8019'><b>{}</b></span>",     // orange
+//  "today": "<span font='Iosevka Nerd Font' color='#fb4934'><b><u>{}</u></b></span>"  // red
+//}
+
+        "format": {
+  "months": "<span font='Iosevka Nerd Font' foreground='#fabd2f' size='18000'><b>{}</b></span>",
+  "days": "<span font='Iosevka Nerd Font' foreground='#d3869b' size='18000'><b>{}</b></span>",
+  "weeks": "<span font='Iosevka Nerd Font' foreground='#8ec07c' size='18000'><b>S{}</b></span>",
+  "weekdays": "<span font='Iosevka Nerd Font' foreground='#fe8019' size='18000'><b>{}</b></span>",
+  "today": "<span font='Iosevka Nerd Font' foreground='#fb4934' size='18000'><b><u>{}</u></b></span>"
+}
+
+
     },
     "actions": {
       "on-click-right": "mode",

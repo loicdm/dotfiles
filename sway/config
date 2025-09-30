@@ -17,6 +17,7 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 set $menu fuzzel -T $term
+set $filemanager pcmanfm
 
 # Set cursor theme
 seat seat0 xcursor_theme Adwaita 24 
@@ -56,6 +57,7 @@ exec nm-applet
 exec mako
 exec wl-paste --type text --watch cliphist store
 exec wl-paste --type image --watch cliphist store
+exec xhost +SI:localuser:root
 ### Input configuration
 #
 # Example configuration:
@@ -78,117 +80,120 @@ input type:keyboard {
 #
 # Basics:
 #
-    # Start a terminal
-    bindsym $mod+Return exec $term
+# Start a terminal
+bindsym $mod+Return exec $term
 
-    # Kill focused window
-    bindsym $mod+Shift+c kill
+# Kill focused window
+bindsym $mod+Shift+c kill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
+# Start your launcher
+bindsym $mod+d exec $menu
 
-    bindsym $mod+Shift+v exec swaylock -f -c 282828
+# launch file manager
+bindsym $mod+e exec $filemanager
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+bindsym $mod+Shift+v exec swaylock -f -c 282828
 
-    # Reload the configuration file
-    bindsym $mod+Shift+r reload
+# Drag floating windows by holding down $mod and left mouse button.
+# Resize them with right mouse button + $mod.
+# Despite the name, also works for non-floating windows.
+# Change normal to inverse to use left mouse button for resizing and right
+# mouse button for dragging.
+floating_modifier $mod normal
 
-    # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+# Reload the configuration file
+bindsym $mod+Shift+r reload
+
+# Exit sway (logs you out of your Wayland session)
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
-    # Switch to workspace
-    bindsym $mod+ampersand workspace number 1
-    bindsym $mod+eacute workspace number 2
-    bindsym $mod+quotedbl workspace number 3
-    bindsym $mod+apostrophe workspace number 4
-    bindsym $mod+parenleft workspace number 5
-    bindsym $mod+minus workspace number 6
-    bindsym $mod+egrave workspace number 7
-    bindsym $mod+underscore workspace number 8
-    bindsym $mod+ccedilla workspace number 9
-    bindsym $mod+agrave workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+ampersand move container to workspace number 1
-    bindsym $mod+Shift+eacute move container to workspace number 2
-    bindsym $mod+Shift+quotedbl move container to workspace number 3
-    bindsym $mod+Shift+apostrophe move container to workspace number 4
-    bindsym $mod+Shift+parenleft move container to workspace number 5
-    bindsym $mod+Shift+minus move container to workspace number 6
-    bindsym $mod+Shift+egrave move container to workspace number 7
-    bindsym $mod+Shift+underscore move container to workspace number 8
-    bindsym $mod+Shift+ccedilla move container to workspace number 9
-    bindsym $mod+Shift+agrave move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
+# Switch to workspace
+bindsym $mod+ampersand workspace number 1
+bindsym $mod+eacute workspace number 2
+bindsym $mod+quotedbl workspace number 3
+bindsym $mod+apostrophe workspace number 4
+bindsym $mod+parenleft workspace number 5
+bindsym $mod+minus workspace number 6
+bindsym $mod+egrave workspace number 7
+bindsym $mod+underscore workspace number 8
+bindsym $mod+ccedilla workspace number 9
+bindsym $mod+agrave workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+ampersand move container to workspace number 1
+bindsym $mod+Shift+eacute move container to workspace number 2
+bindsym $mod+Shift+quotedbl move container to workspace number 3
+bindsym $mod+Shift+apostrophe move container to workspace number 4
+bindsym $mod+Shift+parenleft move container to workspace number 5
+bindsym $mod+Shift+minus move container to workspace number 6
+bindsym $mod+Shift+egrave move container to workspace number 7
+bindsym $mod+Shift+underscore move container to workspace number 8
+bindsym $mod+Shift+ccedilla move container to workspace number 9
+bindsym $mod+Shift+agrave move container to workspace number 10
+# Note: workspaces can have any name you want, not just numbers.
+# We just use 1-10 as the default.
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+# You can "split" the current object of your focus with
+# $mod+b or $mod+v, for horizontal and vertical splits
+# respectively.
+bindsym $mod+b splith
+bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+# Switch the current container between different layout styles
+bindsym $mod+w layout stacking
+bindsym $mod+x layout tabbed
+bindsym $mod+c layout toggle split
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+# Make the current focus fullscreen
+bindsym $mod+f fullscreen
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+# Toggle the current focus between tiling and floating mode
+bindsym $mod+Shift+space floating toggle
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# Swap focus between the tiling area and the floating area
+bindsym $mod+space focus mode_toggle
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
+# Move focus to the parent container
+bindsym $mod+a focus parent
 #
 # Scratchpad:
 #
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+# Sway has a "scratchpad", which is a bag of holding for windows.
+# You can send windows there and get them back later.
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+p move scratchpad
+# Move the currently focused window to the scratchpad
+bindsym $mod+Shift+p move scratchpad
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+p scratchpad show
+# Show the next scratchpad window or hide the focused scratchpad window.
+# If there are multiple scratchpad windows, this command cycles through them.
+bindsym $mod+p scratchpad show
 #
 # Resizing containers:
 #
@@ -216,16 +221,36 @@ bindsym $mod+r mode "resize"
 #
 # Utilities:
 #
-    # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    # Special key to take a screenshot with grim
-    bindsym Print exec grim
+
+bindsym --locked XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym --locked XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.5
+bindsym --locked XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.5
+bindsym --locked XF86AudioPlay exec playerctl play-pause
+bindsym --locked XF86AudioNext exec playerctl next
+bindsym --locked XF86AudioPrev exec playerctl previous
+
+bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
+
+bindsym --locked XF86Search exec $menu
+
+
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+# Allow switching between workspaces with left and right swipes
+bindgesture swipe:right workspace prev
+bindgesture swipe:left workspace next
+
+# Allow container movements by pinching them
+bindgesture pinch:inward+up move up
+bindgesture pinch:inward+down move down
+bindgesture pinch:inward+left move left
+bindgesture pinch:inward+right move right
+
+# Special key to take a screenshot with grim
+bindsym Print exec grim
 
 #
 # Status Bar:
@@ -247,31 +272,56 @@ bindsym $mod+r mode "resize"
 bar swaybar_command waybar
 ### Appearance configuration
 # Font, borders, and gaps   
-    font Iosevka Nerd Font 14px
-    default_floating_border pixel 2
+font Iosevka Nerd Font 18px
+default_floating_border pixel 2
 
-    ### Gruvbox
-    set $light #ebdbb2
-    set $dark #3c3836
-    set $focused #3c3836
-    set $inactive #282828
-    set $unfocused #282828
-    set $urgent #b8bb26
+set $bg          #282828
+set $bg_alt      #3c3836
+set $fg          #ebdbb2
+set $gray        #a89984
+set $red         #fb4934
+set $green       #b8bb26
+set $yellow      #fabd2f
+set $blue        #83a598
+set $purple      #d3869b
+set $aqua        #8ec07c
+set $orange      #fe8019
 
-    ### Colors (see man 5 sway)
-    # border - border around titlebar
-    # bg - titlebar background
-    # text - text on titlebar
-    # indicator - shown where new window will open
-    # child_border - border around the window
-    # class         border      bg      text    indicator   child_border
-    client.focused          $focused    $focused    $light   $focused    $focused
-    client.focused_inactive $inactive   $inactive   $light   $inactive   $inactive
-    client.unfocused        $unfocused  $unfocused  $light  $unfocused  $unfocused
-    client.urgent           $urgent     $urgent     $light  $urgent     $urgent
+set $focused_bg        $bg_alt
+set $focused_border    $purple
+set $inactive          $bg
+set $urgent            $red
+set $text              $fg
+
+client.focused          $focused_border  $focused_bg        $text        $focused_bg    $focused_border
+client.focused_inactive $inactive        $inactive          $gray        $inactive      $inactive
+client.unfocused        $inactive        $inactive          $gray        $inactive      $inactive
+client.urgent           $urgent          $urgent            $text        $urgent        $urgent
+
+
+
+#### Gruvbox
+#set $light #ebdbb2
+#set $dark #3c3836
+#set $focused #3c3836
+#set $inactive #282828
+#set $unfocused #282828
+#set $urgent #b8bb26
+#
+#### Colors (see man 5 sway)
+## border - border around titlebar
+## bg - titlebar background
+## text - text on titlebar
+## indicator - shown where new window will open
+## child_border - border around the window
+## class         border      bg      text    indicator   child_border
+#client.focused          $focused    $focused    $light   $focused    $focused
+#client.focused_inactive $inactive   $inactive   $light   $inactive   $inactive
+#client.unfocused        $unfocused  $unfocused  $light  $unfocused  $unfocused
+#client.urgent           $urgent     $urgent     $light  $urgent     $urgent
 
 layer_effects "waybar" {
-    blur enable;
+  blur enable;
     blur_xray enable;
     blur_ignore_transparent enable;
     shadows enable;
