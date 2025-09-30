@@ -1,0 +1,6 @@
+[Added Associations]
+inode/directory=pcmanfm.desktop
+[Removed Associations]
+inode/directory=kitty.desktop
+[Default Applications]
+inode/directory=pcmanfm.desktop
