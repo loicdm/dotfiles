@@ -17,8 +17,8 @@
     border: none;
     border-radius: 0;
     font-family: "Iosevka Nerd Font Propo", "Font Awesome 6 Free", sans-serif;
-    font-size: 18px;
-    min-height: 32px;
+    font-size: 16px;
+    /*min-height: 32px;*/
 }
 
 /* === Floating Bar === */
@@ -28,34 +28,41 @@ window#waybar {
     margin: 4px;            /* 4px margin on all sides */
     padding: 6px 12px;      /* Internal padding */
     border: none;
-    border-radius: 10px;    /* Rounded corners */
+    border-radius: 5px;    /* Rounded corners */
 }
 
 /* === Workspaces === */
+
 #workspaces button {
     color: @fg;
     background: transparent;
     padding: 0 10px;
+    border-radius: 5px;
 }
 
-#workspaces button.focused {
+#workspaces button.active {
     background: @purple;
     color: @bg;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
 #workspaces button.urgent {
     background: @red;
     color: @fg;
-    border-radius: 6px;
+    border-radius: 5px;
 }
+
+
+
+
+
 
 /* === Mode Indicator === */
 #mode {
     background: @orange;
     color: @bg;
     padding: 0 10px;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 
 /* === Modules === */
@@ -65,7 +72,9 @@ window#waybar {
 #memory,
 #network,
 #pulseaudio,
+#wireplumber,
 #tray,
+#taskbar
 #backlight,
 #temperature,
 #custom-media,
@@ -75,6 +84,36 @@ window#waybar {
     padding: 0 10px;
     color: @fg;
 }
+
+#taskbar button {
+    color: @fg;
+    background: transparent;
+    padding: 0 10px;
+    border-radius: 5px;
+}
+
+#taskbar button.active {
+    background: @purple;
+    color: @bg;
+    border-radius: 5px;
+}
+
+#taskbar button.minimized {
+    background: @gray;
+    color: @fg;
+    border-radius: 5px;
+}
+#taskbar button.maximized {
+    background: @yellow;
+    color: @fg;
+    border-radius: 5px;
+}
+#taskbar button.fullscreen {
+    background: @orange;
+    color: @fg;
+    border-radius: 5px;
+}
+
 
 /* === Clock === */
 #clock {
@@ -107,6 +146,9 @@ window#waybar {
 #pulseaudio.muted {
     color: @gray;
 }
+#wireplumber.muted {
+    color: @gray;
+}
 
 /* === Temperature === */
 #temperature.critical {
@@ -123,6 +165,6 @@ tooltip {
     background: @bg;
     color: @fg;
     border: 1px solid @gray;
-    border-radius: 6px;
+    border-radius: 5px;
 }
 

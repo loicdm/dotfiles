@@ -10,24 +10,23 @@
 "margin-right": 4,
 //  "margin-bottom": 4,
  // "margin": 4,
-  "exclusive": false, // Don't reserve space
+  //"exclusive": false, // Don't reserve space
     // Choose the order of the modules
     "fixed-center": true,
     "ipc": true,
 
     "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/scratchpad"
-        //"custom/media"
+        "hyprland/workspaces",
+	"wlr/taskbar",
+	"hyprland/window"
     ],
     "modules-center": [
-        "sway/window"
     ],
     "modules-right": [
         //"mpd",
         "idle_inhibitor",
-        "pulseaudio",
+        "wireplumber",
+        "bluetooth",
         "network",
         "power-profiles-daemon",
         "cpu",
@@ -35,13 +34,25 @@
         "temperature",
         "backlight",
         //"keyboard-state",
-        "sway/language",
+        //"hyprland/language",
         "battery",
         //"battery#bat2",
         "clock",
         "tray"
         //"custom/power"
     ],
+    "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 14,
+    "icon-theme": "Papirus-Dark",
+    "tooltip-format": "{title}",
+    "on-click": "minimize-raise",
+    "on-click-middle": "close"
+    },
+    "hyprland/window": {
+    "format": "{title}", 
+    "separate-outputs": true
+},
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -104,6 +115,17 @@
         "tooltip-format": "MPD (connected)",
         "tooltip-format-disconnected": "MPD (disconnected)"
     },
+  "bluetooth": {
+    "on-click": "blueman-manager",
+	"format": " {status}",
+	"format-connected": " {device_alias}",
+	"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+	// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+	"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+	"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+},
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -149,11 +171,11 @@
 //}
 
         "format": {
-  "months": "<span font='Iosevka Nerd Font' foreground='#fabd2f' size='18000'><b>{}</b></span>",
-  "days": "<span font='Iosevka Nerd Font' foreground='#d3869b' size='18000'><b>{}</b></span>",
-  "weeks": "<span font='Iosevka Nerd Font' foreground='#8ec07c' size='18000'><b>S{}</b></span>",
-  "weekdays": "<span font='Iosevka Nerd Font' foreground='#fe8019' size='18000'><b>{}</b></span>",
-  "today": "<span font='Iosevka Nerd Font' foreground='#fb4934' size='18000'><b><u>{}</u></b></span>"
+  "months": "<span font='Iosevka Nerd Font' foreground='#fabd2f' size='16000'><b>{}</b></span>",
+  "days": "<span font='Iosevka Nerd Font' foreground='#d3869b' size='16000'><b>{}</b></span>",
+  "weeks": "<span font='Iosevka Nerd Font' foreground='#8ec07c' size='16000'><b>S{}</b></span>",
+  "weekdays": "<span font='Iosevka Nerd Font' foreground='#fe8019' size='16000'><b>{}</b></span>",
+  "today": "<span font='Iosevka Nerd Font' foreground='#fb4934' size='16000'><b><u>{}</u></b></span>"
 }
 
 
@@ -226,25 +248,42 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
+    "wireplumber": {
+    "format": "{volume}% {icon}",
+    "format-muted": " ",    
+    "on-click": "pavucontrol",
+    "format-icons": {                                                                                
+            "headphone": "",                                                                            
+            "hands-free": "",                                                                           
+            "headset": "",                                                                              
+            "phone": "",                                                                                
+            "portable": "",                                                                             
+            "car": "",                                                                                  
             "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
     },
+    },
+
+    "pulseaudio": {                                                                                      
+        // "scroll-step": 1, // %, can be a float                                                        
+        "format": "{volume}% {icon}",                                                    
+        "format-bluetooth": "{volume}% {icon} {format_source}",                                         
+        "format-bluetooth-muted": " {icon} {format_source}",                                           
+        "format-muted": " {format_source}",                                                             
+        "format-source": "{volume}% ",                                                                  
+        "format-source-muted": "",                                                                      
+        "format-icons": {                                                                                
+            "headphone": "",                                                                            
+            "hands-free": "",                                                                           
+            "headset": "",                                                                              
+            "phone": "",                                                                                
+            "portable": "",                                                                             
+            "car": "",                                                                                  
+            "default": ["", "", ""]                                                                   
+        },                                                                                               
+        "on-click": "pavucontrol"                                                                        
+    },
+
+
     "custom/media": {
         "format": "{icon} {text}",
         "return-type": "json",
