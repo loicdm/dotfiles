@@ -1,222 +1,171 @@
+/* Gruvbox Dark Theme - Waybar with @define-color aliases */
+
+/* === Color Definitions === */
+@define-color bg        #282828;
+@define-color bga       rgba(40, 40, 40, 0.99);
+@define-color fg        #ebdbb2;
+@define-color red       #cc241d;
+@define-color green     #98971a;
+@define-color yellow    #d79921;
+@define-color blue      #458588;
+@define-color purple    #b16286;
+@define-color aqua      #689d6a;
+@define-color orange    #d65d0e;
+@define-color gray      #928374;
+
+/* === Base Styles === */
 * {
-	font-size:14px;
-	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
-	border-color:transparent;
-	/* padding: 0px 8px 0px 8px; */
-	/* border: 1px solid #50fa7b; */
-
-}
-.modules-left {
-	padding-top: 2px;
-	padding-bottom: 0px;
-	padding-right: 4px;
-	padding-left: 4px;
-    margin-left : 0px;
-
-}
-.modules-center {
-	padding-top: 2px;
-	padding-bottom: 0px;
-	padding-right: 4px;
-	padding-left: 4px;
-    margin-left : 8px;
-    margin-right : 8px;
-
-
-}
-.modules-right {
-	padding-top: 2px;
-	padding-bottom: 0px;
-	padding-right: 4px;
-	padding-left: 4px;
-    margin-right : 8px;
+    border: none;
+    border-radius: 0;
+    font-family: "Iosevka Nerd Font Propo", "Font Awesome 6 Free", sans-serif;
+    font-size: 16px;
+    /*min-height: 32px;*/
 }
 
-.modules-right :hover {
-    color: #50fa7b;
-}
-
-
+/* === Floating Bar === */
 window#waybar {
-	background-color: transparent;
-}
-window#waybar.empty #window {
-	padding: 0px;
-	margin: 0px;
-	border: 0px;
-		background-color: transparent;
-}
-
-window#waybar> box {
-    /*margin: 4px;
-    padding: 0px 4px 0px 4px; */
-    border-radius: 5px 5px;
-    background-color: rgba(40, 42, 54, 0.85);
-    /* background: rgba(0, 0, 0, 0); */
-    color: #f8f8f2;
-
-    border: 1px solid #bd93f9;
-    /* border-top: 2px solid #bd93f9; */
-
-    /* border-left: 2px solid #bd93f9; */
-    /* border-right: 2px solid #bd93f9; */
-    /* border-bottom: 2px solid #bd93f9; */
+    background: @bga;
+    color: @fg;
+    margin: 4px;            /* 4px margin on all sides */
+    padding: 6px 12px;      /* Internal padding */
+    border: none;
+    border-radius: 5px;    /* Rounded corners */
 }
 
-#workspaces {
-	/* padding: 0 4px 0 4px ; */
- 	font-size: 14px;
-    padding-left: 4px;
-    padding-right: 4px;
-    /* margin-left : 4px; */
-    /* margin-right : 4px; */
-
-}
+/* === Workspaces === */
 
 #workspaces button {
-	/* padding: 0 4px 0 4px ; */
-	background-color: transparent ;
-	color: #f8f8f2;
-	/* margin-bottom:2px; */
-	/* margin-top:2px; */
-   padding-left: 4px;
-    padding-right: 4px;
-    /* margin-left : 4px; */
-    /* margin-right : 4px; */
-
-
-
-}
-
-#workspaces button:hover {
-	border-color: transparent;
-	color: #ff5555;
-}
-
-#workspaces button.focused {
-	color: #50fa7b;
+    color: @fg;
+    background: transparent;
+    padding: 0 10px;
+    border-radius: 5px;
 }
 
 #workspaces button.active {
-	/* color: #bd93f9; */
-	color: #50fa7b;
-	background: transparent;
+    background: @purple;
+    color: @bg;
+    border-radius: 5px;
 }
 
 #workspaces button.urgent {
-	color: #ff8080;
-}
-#window {
-	background-color: transparent;
-       padding-left: 10px;
-    padding-right: 10px;
-
-}
-#battery {
-	background-color: transparent;
-       padding-left: 10px;
-    padding-right: 10px;
-
-}
-#network {
-    padding-left: 10px;
-    padding-right: 10px;
-
-}
-#bluetooth {
-    padding-left: 10px;
-    padding-right: 10px;
-
+    background: @red;
+    color: @fg;
+    border-radius: 5px;
 }
 
-#clock {
-	   padding-left: 10px;
-    padding-right: 10px;
-/* color: #50fa7b; */
-	}
 
-#clock calendar{
-	   /* color: #50fa7b; */
 
-	font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free";
-	}
 
-#pulseaudio {   padding-left: 10px;
-    padding-right: 10px;
 
+
+/* === Mode Indicator === */
+#mode {
+    background: @orange;
+    color: @bg;
+    padding: 0 10px;
+    border-radius: 5px;
 }
 
-#backlight {   padding-left: 10px;
-    padding-right: 10px;
-
-}
-#memory{
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#cpu{
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#custom-ddcutil {
-   padding-left: 10px;
-    padding-right: 10px;
-}
+/* === Modules === */
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#wireplumber,
+#tray,
+#taskbar
+#backlight,
+#temperature,
+#custom-media,
+#custom-weather,
+#custom-updates,
 #idle_inhibitor {
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#tray {
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#power-profiles-daemon {
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#privacy {
-   padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px;
+    color: @fg;
 }
 
-#custom-quit {
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#custom-lock {
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#custom-reboot {
-   padding-left: 10px;
-    padding-right: 10px;
-}
-#custom-power {
-   padding-left: 10px;
-    padding-right: 10px;
+#taskbar button {
+    color: @fg;
+    background: transparent;
+    padding: 0 10px;
+    border-radius: 5px;
 }
 
-#custom-quit:hover  {
+#taskbar button.active {
+    background: @purple;
+    color: @bg;
+    border-radius: 5px;
+}
 
-	color: #ff8080;
+#taskbar button.minimized {
+    background: @gray;
+    color: @fg;
+    border-radius: 5px;
 }
-#custom-lock:hover  {
+#taskbar button.maximized {
+    background: @yellow;
+    color: @fg;
+    border-radius: 5px;
+}
+#taskbar button.fullscreen {
+    background: @orange;
+    color: @fg;
+    border-radius: 5px;
+}
 
-	color: #ff8080;
-}
-#custom-reboot:hover  {
 
-	color: #ff8080;
+/* === Clock === */
+#clock {
+    color: @purple;
 }
-#custom-power:hover {
 
-	color: #ff8080;
+/* === Idle Inhibitor === */
+#idle_inhibitor {
+    color: @gray;
 }
-#custom-wlogout {
-   padding-left: 10px;
-    padding-right: 10px;
+
+#idle_inhibitor.activated {
+    color: @green;
 }
-#custom-notification {
-    padding-left: 10px;
-    padding-right: 10px;
+
+/* === Battery === */
+#battery.charging {
+    color: @green;
 }
+
+#battery.warning:not(.charging) {
+    color: @yellow;
+}
+
+#battery.critical:not(.charging) {
+    color: @red;
+}
+
+/* === Audio === */
+#pulseaudio.muted {
+    color: @gray;
+}
+#wireplumber.muted {
+    color: @gray;
+}
+
+/* === Temperature === */
+#temperature.critical {
+    color: @red;
+}
+
+/* === Custom Modules === */
+#custom-updates.pending {
+    color: @yellow;
+}
+
+/* === Tooltip === */
+tooltip {
+    background: @bg;
+    color: @fg;
+    border: 1px solid @gray;
+    border-radius: 5px;
+}
+

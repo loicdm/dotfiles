@@ -1,4 +1,3 @@
-function pprovides --wraps='p -F' --description 'alias pprovides p -F'
-  p -F $argv
-        
+function pprovides --wraps='pkgfile -sv' --description 'alias pprovides pkgfile -sv'
+    pkgfile -sv $argv
 end
