@@ -210,16 +210,16 @@
   (setq lsp-ui-doc-enable t)    ;; Activer la documentation LSP
   (setq lsp-ui-sideline-enable t) ;; Afficher les erreurs et warnings dans la barre latérale))
 
-;; Installer lsp-ui pour l'affichage des informations LSP (documentation, diagnostics, etc.)
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode
-  :config
-  (setq lsp-ui-doc-enable t)           ;; Afficher la documentation dans une fenêtre popup
-  (setq lsp-ui-sideline-enable t)      ;; Afficher les informations de diagnostic sur le côté
-  (setq lsp-ui-sideline-show-symbol t) ;; Afficher le symbole actuel dans la barre latérale
-  :hook (lsp-mode . lsp-ui-mode))
-)
+  ;; Installer lsp-ui pour l'affichage des informations LSP (documentation, diagnostics, etc.)
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode
+    :config
+    (setq lsp-ui-doc-enable t)           ;; Afficher la documentation dans une fenêtre popup
+    (setq lsp-ui-sideline-enable t)      ;; Afficher les informations de diagnostic sur le côté
+    (setq lsp-ui-sideline-show-symbol t) ;; Afficher le symbole actuel dans la barre latérale
+    :hook (lsp-mode . lsp-ui-mode))
+  )
 
 ;; (use-package ivy-prescient
 ;;   :ensure t
@@ -232,20 +232,39 @@
   :config
   (company-prescient-mode)
   )
+
+(use-package nushell-mode
+  :ensure t)
+
+(use-package nushell-ts-mode
+  :ensure t)
+
+(use-package format-all
+  :ensure t
+
+  ;; Active un mode automatique sur sauvegarde
+  ;; (tu peux commenter cette ligne si tu préfères formater manuellement)
+  ;; :hook (prog-mode . format-all-ensure-formatter)
+
+  ;; Ajoute une touche pratique pour formater le buffer
+  ;; :bind (("C-c f" . format-all-buffer)))
+  )
+
 ;; General keybindings setup using general.el
 (general-define-key
  :prefix "SPC"
  :states '(normal visual)
  :keymaps 'override
- "f" 'ido-find-file
+ "d" 'ido-find-file
+ "f" 'format-all-buffer
  "b" 'ido-switch-buffer
  "i" 'ibuffer
- "d" 'evil-delete-buffer
+ "k" 'evil-delete-buffer
  "x" 'execute-extended-command
  "u" 'undo-tree-visualize
  "m" 'woman
  "M" 'woman-follow
- "g" 'magit-status 
+ "g" 'magit-status
  ;; Navigation des curseurs
  "cmn"  'mc/mark-next-like-this     ;; Ajouter un curseur à la prochaine occurrence
  "cmp"   'mc/mark-previous-like-this ;; Ajouter un curseur à l'occurrence précédente
@@ -275,6 +294,10 @@
 (setq tramp-cleanup-async-result t)
 (setq tramp-persistency-file-name nil) ;; Désactiver la persistance des connexions Tramp
 
+(ultra-scroll-mode -1)
+
+(pixel-scroll-precision-mode 1)
+
 ;; Enable line numbers globally (both relative and absolute)
 (global-display-line-numbers-mode t)
 (menu-bar-mode 1)  ;; Réactive la barre de menus
@@ -287,14 +310,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(inhibit-startup-screen t)
- '(package-selected-packages
-   '(all-the-icons-dired company-prescient company-quickhelp
-			 doom-modeline doom-themes dracula-theme
-			 evil-collection general
-			 highlight-indent-guides ivy-posframe
-			 ivy-prescient ligature lsp-mode lsp-ui magit
-			 multiple-cursors orderless rainbow-delimiters
-			 tree-sitter-langs undo-tree vertico)))
+ '(package-selected-packages nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -302,6 +318,3 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-
-
-
