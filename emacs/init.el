@@ -255,7 +255,7 @@
  :prefix "SPC"
  :states '(normal visual)
  :keymaps 'override
- "d" 'ido-find-file
+ "d" 'ido-dired
  "f" 'format-all-buffer
  "b" 'ido-switch-buffer
  "i" 'ibuffer
