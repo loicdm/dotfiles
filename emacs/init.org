@@ -11,141 +11,139 @@ All Emacs Lisp blocks are tangled automatically on save.
 Initialize Emacs package archives and install =use-package=.
 
 #+begin_src emacs-lisp
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
 #+end_src
-
-
 
 * Themes & Appearance
 ** Dracula & Doom Themes
 #+begin_src emacs-lisp
-(use-package dracula-theme
-  :ensure t
-  :config (load-theme 'dracula t))
+  (use-package dracula-theme
+    :ensure t
+    :config (load-theme 'dracula t))
 
-(use-package doom-themes
-  :ensure t
-  :config (load-theme 'doom-dracula t))
+  (use-package doom-themes
+    :ensure t
+    :config (load-theme 'doom-dracula t))
 #+end_src
 
 ** Fonts and UI Options
 #+begin_src emacs-lisp
-(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
-(setq doom-modeline-font (font-spec :family "Iosevka Nerd Font" :size 12))
+  (set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
+  (setq doom-modeline-font (font-spec :family "Iosevka Nerd Font" :size 12))
 
-(global-display-line-numbers-mode 1)
-(setq display-line-numbers-type 'relative)
+  (global-display-line-numbers-mode 1)
+  (setq display-line-numbers-type 'relative)
 
-(menu-bar-mode 1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+  (menu-bar-mode 1)
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1)
 #+end_src
 
 ** Syntax Highlighting & Visual Aids
 #+begin_src emacs-lisp
-(global-font-lock-mode 1)
+  (global-font-lock-mode 1)
 
-(use-package tree-sitter
-  :ensure t
-  :config (global-tree-sitter-mode))
+  (use-package tree-sitter
+    :ensure t
+    :config (global-tree-sitter-mode))
 
-(use-package tree-sitter-langs :ensure t)
+  (use-package tree-sitter-langs :ensure t)
 
-(use-package rainbow-delimiters
-  :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode))
+  (use-package rainbow-delimiters
+    :ensure t
+    :hook (prog-mode . rainbow-delimiters-mode))
 
-(use-package highlight-indent-guides
-  :ensure t
-  :hook (prog-mode . highlight-indent-guides-mode))
+  (use-package highlight-indent-guides
+    :ensure t
+    :hook (prog-mode . highlight-indent-guides-mode))
 #+end_src
 
 ** Ligatures
 #+begin_src emacs-lisp
-(use-package ligature
-  :ensure t
-  :config
-  (ligature-set-ligatures 't '("->" "<-" "=>" "<=>" "::"))
-  (global-ligature-mode t))
+  (use-package ligature
+    :ensure t
+    :config
+    (ligature-set-ligatures 't '("->" "<-" "=>" "<=>" "::"))
+    (global-ligature-mode t))
 #+end_src
 
 ** Doom Modeline
 #+begin_src emacs-lisp
-(use-package doom-modeline
-  :ensure t
-  :init
-  (setq doom-modeline-support-imenu t
-        doom-modeline-icon t
-        doom-modeline-vcs-max-length 20
-        doom-modeline-buffer-file-name-style 'truncate-with-project
-        doom-modeline-time-live-icon t
-        doom-modeline-major-mode-icon t
-        doom-modeline-minor-modes t
-        doom-modeline-enable-word-count t)
-  :config (doom-modeline-mode 1))
+  (use-package doom-modeline
+    :ensure t
+    :init
+    (setq doom-modeline-support-imenu t
+          doom-modeline-icon t
+          doom-modeline-vcs-max-length 20
+          doom-modeline-buffer-file-name-style 'truncate-with-project
+          doom-modeline-time-live-icon t
+          doom-modeline-major-mode-icon t
+          doom-modeline-minor-modes t
+          doom-modeline-enable-word-count t)
+    :config (doom-modeline-mode 1))
 #+end_src
 
 * Completion & Navigation
 ** Company
 #+begin_src emacs-lisp
-(use-package company
-  :ensure t
-  :init (global-company-mode 1)
-  :config
-  (setq company-idle-delay 0.2
-        company-minimum-prefix-length 2))
+  (use-package company
+    :ensure t
+    :init (global-company-mode 1)
+    :config
+    (setq company-idle-delay 0.2
+          company-minimum-prefix-length 2))
 
-(use-package company-quickhelp
-  :ensure t
-  :config (company-quickhelp-mode 1))
+  (use-package company-quickhelp
+    :ensure t
+    :config (company-quickhelp-mode 1))
 
-(use-package company-prescient
-  :ensure t
-  :config (company-prescient-mode))
+  (use-package company-prescient
+    :ensure t
+    :config (company-prescient-mode))
 #+end_src
 
 ** Vertico + Orderless
 #+begin_src emacs-lisp
-(use-package vertico
-  :ensure t
-  :init (vertico-mode))
+  (use-package vertico
+    :ensure t
+    :init (vertico-mode))
 
-(use-package orderless
-  :ensure t
-  :config
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil))
+  (use-package orderless
+    :ensure t
+    :config
+    (setq completion-styles '(orderless basic)
+          completion-category-defaults nil))
 
-(setq vertico-multiline t
-      vertico-resize t
-      vertico-cycle t)
+  (setq vertico-multiline t
+        vertico-resize t
+        vertico-cycle t)
 #+end_src
 
 ** Which-key
 #+begin_src emacs-lisp
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
+  (use-package which-key
+    :ensure t
+    :config (which-key-mode))
 #+end_src
 
 * Evil Mode & Keybindings
 ** Evil
 #+begin_src emacs-lisp
-(use-package evil
-  :ensure t
-  :init (setq evil-want-keybinding nil)
-  :config (evil-mode 1))
+  (use-package evil
+    :ensure t
+    :init (setq evil-want-keybinding nil)
+    :config (evil-mode 1))
 
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config (evil-collection-init))
+  (use-package evil-collection
+    :after evil
+    :ensure t
+    :config (evil-collection-init))
 #+end_src
 
 ** General.el Keybindings
@@ -182,33 +180,132 @@ Initialize Emacs package archives and install =use-package=.
 * Programming Tools
 ** LSP Mode
 #+begin_src emacs-lisp
-(use-package lsp-mode
-  :ensure t
-  :commands lsp
-  :hook ((c-mode html-mode javascript-mode python-mode c++-mode) . lsp)
-  :config
-  (setq lsp-ui-doc-enable t
-        lsp-ui-sideline-enable t)
-
-  (use-package lsp-ui
+  (use-package lsp-mode
     :ensure t
-    :commands lsp-ui-mode
-    :hook (lsp-mode . lsp-ui-mode)
+    :commands lsp
+    :hook ((c-mode html-mode javascript-mode python-mode c++-mode) . lsp)
     :config
     (setq lsp-ui-doc-enable t
-          lsp-ui-sideline-enable t
-          lsp-ui-sideline-show-symbol t)))
+          lsp-ui-sideline-enable t)
+
+    (use-package lsp-ui
+      :ensure t
+      :commands lsp-ui-mode
+      :hook (lsp-mode . lsp-ui-mode)
+      :config
+      (setq lsp-ui-doc-enable t
+            lsp-ui-sideline-enable t
+            lsp-ui-sideline-show-symbol t)))
 #+end_src
 
 ** Format-all
 #+begin_src emacs-lisp
-(use-package format-all
-  :ensure t)
+  (use-package format-all
+    :ensure t)
 #+end_src
 
 ** Multiple Cursors
 #+begin_src emacs-lisp
-(use-package multiple-cursors :ensure t)
+  (use-package multiple-cursors :ensure t)
+#+end_src
+* Languages
+** LaTeX
+#+begin_src emacs-lisp
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install)
+    (setq pdf-view-display-size 'fit-page))
+
+  ;; --------------------------------
+  ;; AUCTeX (major LaTeX environment)
+  ;; --------------------------------
+  (use-package tex
+    :ensure auctex
+    :defer t
+    :hook ((LaTeX-mode . visual-line-mode)
+           (LaTeX-mode . LaTeX-math-mode)
+           (LaTeX-mode . reftex-mode)
+           (LaTeX-mode . flyspell-mode)
+           (LaTeX-mode . company-mode))
+    :config
+    ;; Automatic parsing
+    (setq TeX-auto-save t
+          TeX-parse-self t
+          TeX-save-query nil)
+
+    ;; Use PDF mode by default
+    (setq TeX-PDF-mode t)
+
+    ;; Enable synctex correlation
+    (setq TeX-source-correlate-mode t
+          TeX-source-correlate-start-server t)
+
+    ;; Use pdf-tools for viewing
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+          TeX-view-program-list '(("PDF Tools" TeX-pdf-tools-sync-view)))
+
+    ;; Turn on forward + inverse search automatically
+    (add-hook 'TeX-after-compilation-finished-functions
+              #'TeX-revert-document-buffer))
+
+  ;; -----------------------------
+  ;; RefTeX (citations, labels, TOC)
+  ;; -----------------------------
+  (use-package reftex
+    :ensure nil   ;; comes with Emacs
+    :hook (LaTeX-mode . reftex-mode)
+    :config
+    (setq reftex-plug-into-AUCTeX t))
+
+  ;; -----------------------------
+  ;; Company-mode completions
+  ;; -----------------------------
+  (use-package company
+    :ensure t
+    :config
+    (setq company-idle-delay 0.1
+          company-minimum-prefix-length 1))
+
+  ;; -----------------------------
+  ;; Optional: CDLaTeX (fast input)
+  ;; -----------------------------
+  (use-package cdlatex
+    :ensure t
+    :hook (LaTeX-mode . cdlatex-mode))
+
+#+end_src
+** elisp
+#+begin_src emacs-lisp
+  (use-package elisp-format
+    :ensure t)
+  (with-eval-after-load 'format-all
+    ;; Register elisp-format as the formatter for emacs-lisp-mode
+    (add-to-list 'format-all-formatters
+                 '(elisp-format
+                   "elisp-format"
+                   ("elisp-format-buffer")  ;; command to run
+                   nil                      ;; no args needed
+                   :mode ("emacs-lisp-mode"))))
+#+end_src
+** org
+#+begin_src emacs-lisp
+  (use-package org-modern
+    :ensure t
+    :hook (org-mode . org-modern-mode)
+    :config
+    ;; Optional tweaks
+    ;; Replace standard bullets with UTF-8 bullets
+    (setq org-modern-star '("◉" "◆" "●" "○" "✸" "✿"))
+    
+    ;; Make emphasis (bold/italic) more visible
+    (setq org-modern-block-fringe nil) ;; remove block fringe indicators
+    
+    ;; Optional: modernize tables
+    (setq org-modern-table nil) ;; set to t to add table borders and shading
+
+    ;; Automatically refresh when themes change
+    (add-hook 'after-load-theme-hook #'org-modern-reload))
 #+end_src
 
 * Shells & Terminals
@@ -219,32 +316,32 @@ Initialize Emacs package archives and install =use-package=.
 
 * Git Integration
 #+begin_src emacs-lisp
-(use-package magit :ensure t)
-(use-package magit-section :ensure t)
+  (use-package magit :ensure t)
+  (use-package magit-section :ensure t)
 #+end_src
 
 * Dired Enhancements
 #+begin_src emacs-lisp
-(use-package all-the-icons :ensure t)
+  (use-package all-the-icons :ensure t)
 
-(use-package all-the-icons-dired
-  :ensure t
-  :hook (dired-mode . all-the-icons-dired-mode))
+  (use-package all-the-icons-dired
+    :ensure t
+    :hook (dired-mode . all-the-icons-dired-mode))
 #+end_src
 
 * Undo, Save History, Manuals
 #+begin_src emacs-lisp
-(use-package saveplace
-  :ensure t
-  :config (save-place-mode 1))
+  (use-package saveplace
+    :ensure t
+    :config (save-place-mode 1))
 
-(use-package undo-tree
-  :ensure t
-  :config (global-undo-tree-mode))
+  (use-package undo-tree
+    :ensure t
+    :config (global-undo-tree-mode))
 
-(use-package woman
-  :ensure t
-  :config (setq woman-use-own-frame nil))
+  (use-package woman
+    :ensure t
+    :config (setq woman-use-own-frame nil))
 #+end_src
 
 * Performance Tweaks & Startup options
