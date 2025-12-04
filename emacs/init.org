@@ -150,32 +150,33 @@ Initialize Emacs package archives and install =use-package=.
 
 ** General.el Keybindings
 #+begin_src emacs-lisp
-(use-package general :ensure t)
+  (use-package general :ensure t)
 
-(general-define-key
- :prefix "SPC"
- :states '(normal visual)
- :keymaps 'override
- "d" 'ido-dired
- "f" 'format-all-buffer
- "b" 'ido-switch-buffer
- "i" 'ibuffer
- "k" 'evil-delete-buffer
- "x" 'execute-extended-command
- "u" 'undo-tree-visualize
- "m" 'woman
- "M" 'woman-follow
- "g" 'magit-status
+  (general-define-key
+   :prefix "SPC"
+   :states '(normal visual)
+   :keymaps 'override
+   "d" 'ido-dired
+   "f" 'format-all-buffer
+   "b" 'ido-switch-buffer
+   "i" 'ibuffer
+   "k" 'evil-delete-buffer
+   "x" 'execute-extended-command
+   "u" 'undo-tree-visualize
+   "m" 'woman
+   "M" 'woman-follow
+   "g" 'magit-status
+   "C" 'compile
 
- ;; multiple cursors
- "cmn" 'mc/mark-next-like-this
- "cmp" 'mc/mark-previous-like-this
- "cma" 'mc/mark-all-like-this
- "cn"  'mc/skip-to-next-like-this
- "cp"  'mc/skip-to-previous-like-this
- "cm"  'mc/mark-all-dwim
- "cun" 'mc/unmark-next-like-this
- "cup" 'mc/unmark-previous-like-this)
+   ;; multiple cursors
+   "cmn" 'mc/mark-next-like-this
+   "cmp" 'mc/mark-previous-like-this
+   "cma" 'mc/mark-all-like-this
+   "cn"  'mc/skip-to-next-like-this
+   "cp"  'mc/skip-to-previous-like-this
+   "cm"  'mc/mark-all-dwim
+   "cun" 'mc/unmark-next-like-this
+   "cup" 'mc/unmark-previous-like-this)
 #+end_src
 
 * Programming Tools
