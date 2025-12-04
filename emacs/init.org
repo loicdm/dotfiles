@@ -253,7 +253,7 @@ Initialize Emacs package archives and install =use-package=.
   (setq tramp-cleanup-async-result t)
   (setq tramp-persistency-file-name nil)
   (setq inhibit-startup-screen t)
-
+  (setenv "SSH_AUTH_SOCK" "/home/loicdm/.bitwarden-ssh-agent.sock")
   ;; (pixel-scroll-precision-mode 1)
 
 #+end_src
