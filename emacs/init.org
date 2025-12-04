@@ -1,0 +1,258 @@
+#+TITLE: loicdm's emacs cfg
+#+AUTHOR: loicdm
+#+OPTIONS: toc:3 num:nil
+#+PROPERTY: header-args:emacs-lisp :tangle yes
+
+* Introduction
+This is a literate Emacs configuration converted from =init.el=.
+All Emacs Lisp blocks are tangled automatically on save.
+
+* Package System
+Initialize Emacs package archives and install =use-package=.
+
+#+begin_src emacs-lisp
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+#+end_src
+
+
+
+* Themes & Appearance
+** Dracula & Doom Themes
+#+begin_src emacs-lisp
+(use-package dracula-theme
+  :ensure t
+  :config (load-theme 'dracula t))
+
+(use-package doom-themes
+  :ensure t
+  :config (load-theme 'doom-dracula t))
+#+end_src
+
+** Fonts and UI Options
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil :font "Iosevka Nerd Font" :height 140)
+(setq doom-modeline-font (font-spec :family "Iosevka Nerd Font" :size 12))
+
+(global-display-line-numbers-mode 1)
+(setq display-line-numbers-type 'relative)
+
+(menu-bar-mode 1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+#+end_src
+
+** Syntax Highlighting & Visual Aids
+#+begin_src emacs-lisp
+(global-font-lock-mode 1)
+
+(use-package tree-sitter
+  :ensure t
+  :config (global-tree-sitter-mode))
+
+(use-package tree-sitter-langs :ensure t)
+
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+
+(use-package highlight-indent-guides
+  :ensure t
+  :hook (prog-mode . highlight-indent-guides-mode))
+#+end_src
+
+** Ligatures
+#+begin_src emacs-lisp
+(use-package ligature
+  :ensure t
+  :config
+  (ligature-set-ligatures 't '("->" "<-" "=>" "<=>" "::"))
+  (global-ligature-mode t))
+#+end_src
+
+** Doom Modeline
+#+begin_src emacs-lisp
+(use-package doom-modeline
+  :ensure t
+  :init
+  (setq doom-modeline-support-imenu t
+        doom-modeline-icon t
+        doom-modeline-vcs-max-length 20
+        doom-modeline-buffer-file-name-style 'truncate-with-project
+        doom-modeline-time-live-icon t
+        doom-modeline-major-mode-icon t
+        doom-modeline-minor-modes t
+        doom-modeline-enable-word-count t)
+  :config (doom-modeline-mode 1))
+#+end_src
+
+* Completion & Navigation
+** Company
+#+begin_src emacs-lisp
+(use-package company
+  :ensure t
+  :init (global-company-mode 1)
+  :config
+  (setq company-idle-delay 0.2
+        company-minimum-prefix-length 2))
+
+(use-package company-quickhelp
+  :ensure t
+  :config (company-quickhelp-mode 1))
+
+(use-package company-prescient
+  :ensure t
+  :config (company-prescient-mode))
+#+end_src
+
+** Vertico + Orderless
+#+begin_src emacs-lisp
+(use-package vertico
+  :ensure t
+  :init (vertico-mode))
+
+(use-package orderless
+  :ensure t
+  :config
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil))
+
+(setq vertico-multiline t
+      vertico-resize t
+      vertico-cycle t)
+#+end_src
+
+** Which-key
+#+begin_src emacs-lisp
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+#+end_src
+
+* Evil Mode & Keybindings
+** Evil
+#+begin_src emacs-lisp
+(use-package evil
+  :ensure t
+  :init (setq evil-want-keybinding nil)
+  :config (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config (evil-collection-init))
+#+end_src
+
+** General.el Keybindings
+#+begin_src emacs-lisp
+(use-package general :ensure t)
+
+(general-define-key
+ :prefix "SPC"
+ :states '(normal visual)
+ :keymaps 'override
+ "d" 'ido-dired
+ "f" 'format-all-buffer
+ "b" 'ido-switch-buffer
+ "i" 'ibuffer
+ "k" 'evil-delete-buffer
+ "x" 'execute-extended-command
+ "u" 'undo-tree-visualize
+ "m" 'woman
+ "M" 'woman-follow
+ "g" 'magit-status
+
+ ;; multiple cursors
+ "cmn" 'mc/mark-next-like-this
+ "cmp" 'mc/mark-previous-like-this
+ "cma" 'mc/mark-all-like-this
+ "cn"  'mc/skip-to-next-like-this
+ "cp"  'mc/skip-to-previous-like-this
+ "cm"  'mc/mark-all-dwim
+ "cun" 'mc/unmark-next-like-this
+ "cup" 'mc/unmark-previous-like-this)
+#+end_src
+
+* Programming Tools
+** LSP Mode
+#+begin_src emacs-lisp
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :hook ((c-mode html-mode javascript-mode python-mode c++-mode) . lsp)
+  :config
+  (setq lsp-ui-doc-enable t
+        lsp-ui-sideline-enable t)
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode
+    :hook (lsp-mode . lsp-ui-mode)
+    :config
+    (setq lsp-ui-doc-enable t
+          lsp-ui-sideline-enable t
+          lsp-ui-sideline-show-symbol t)))
+#+end_src
+
+** Format-all
+#+begin_src emacs-lisp
+(use-package format-all
+  :ensure t)
+#+end_src
+
+** Multiple Cursors
+#+begin_src emacs-lisp
+(use-package multiple-cursors :ensure t)
+#+end_src
+
+* Shells & Terminals
+#+begin_src emacs-lisp
+  ;; (use-package nushell-mode :ensure t)
+  ;; (use-package nushell-ts-mode :ensure t)
+#+end_src
+
+* Git Integration
+#+begin_src emacs-lisp
+(use-package magit :ensure t)
+(use-package magit-section :ensure t)
+#+end_src
+
+* Dired Enhancements
+#+begin_src emacs-lisp
+(use-package all-the-icons :ensure t)
+
+(use-package all-the-icons-dired
+  :ensure t
+  :hook (dired-mode . all-the-icons-dired-mode))
+#+end_src
+
+* Undo, Save History, Manuals
+#+begin_src emacs-lisp
+(use-package saveplace
+  :ensure t
+  :config (save-place-mode 1))
+
+(use-package undo-tree
+  :ensure t
+  :config (global-undo-tree-mode))
+
+(use-package woman
+  :ensure t
+  :config (setq woman-use-own-frame nil))
+#+end_src
+
+* Performance Tweaks & Startup options
+#+begin_src emacs-lisp
+  (setq gc-cons-threshold 100000000)
+  (setq tramp-cleanup-async-result t)
+  (setq tramp-persistency-file-name nil)
+  (setq inhibit-startup-screen t)
+
+  ;; (pixel-scroll-precision-mode 1)
+
+#+end_src
